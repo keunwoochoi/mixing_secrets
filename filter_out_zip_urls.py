@@ -1,5 +1,4 @@
 import re
-import ipdb
 
 with open('page_source.txt') as f_txt:
     lines = f_txt.readlines()
