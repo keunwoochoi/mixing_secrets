@@ -19,6 +19,9 @@ non_voc_at_all_zips = {}
 def vocal_name_detector(filename):
     filename = filename.split('/')[-1]  # remove the folder name
 
+    if filename.startswith('.'):
+        return False
+    
     if 'voc' in filename.lower() or 'vox' in filename.lower():
         return True
     return False
