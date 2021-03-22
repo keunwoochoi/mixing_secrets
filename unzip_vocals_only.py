@@ -3,6 +3,7 @@ It unzips and moves them into a single directory.
 """
 import os
 import json
+import tqdm
 import shutil
 import zipfile
 import argparse
@@ -22,10 +23,10 @@ def main(source_path, target_path):
     #
     # assert len(set(filepaths)) == len(filepaths)
     # ..ok there are overlapping names, so..  i'll need to be more careful as below.
-    
+
     temp_dir = tempfile.TemporaryDirectory()
 
-    for zipfile, subpaths in data.items():
+    for zipfile, subpaths in tqdm.tqdm(data.items(), total=len(data)):
         with zipfile.ZipFile(os.path.join(source_path, zipfile)) as zip_ref:
             for subpath in subpaths:
                 zip_ref.extract(subpath, temp_dir)
