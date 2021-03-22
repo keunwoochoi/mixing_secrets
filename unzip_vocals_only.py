@@ -24,6 +24,8 @@ def main(source_path, target_path):
     # assert len(set(filepaths)) == len(filepaths)
     # ..ok there are overlapping names, so..  i'll need to be more careful as below.
 
+    os.makedirs(target_path, exist_ok=True)
+
     temp_dir = tempfile.TemporaryDirectory()
 
     for zip_fn, subpaths in tqdm.tqdm(data.items(), total=len(data)):
