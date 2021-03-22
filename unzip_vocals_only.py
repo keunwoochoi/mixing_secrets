@@ -26,8 +26,8 @@ def main(source_path, target_path):
 
     temp_dir = tempfile.TemporaryDirectory()
 
-    for zipfile, subpaths in tqdm.tqdm(data.items(), total=len(data)):
-        with zipfile.ZipFile(os.path.join(source_path, zipfile)) as zip_ref:
+    for zip_fn, subpaths in tqdm.tqdm(data.items(), total=len(data)):
+        with zipfile.ZipFile(os.path.join(source_path, zip_fn)) as zip_ref:
             for subpath in subpaths:
                 zip_ref.extract(subpath, temp_dir)
                 new_filename = subpath.replace('/', '-')
