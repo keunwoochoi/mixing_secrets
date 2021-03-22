@@ -29,9 +29,9 @@ def main(source_path, target_path):
     for zip_fn, subpaths in tqdm.tqdm(data.items(), total=len(data)):
         with zipfile.ZipFile(os.path.join(source_path, zip_fn)) as zip_ref:
             for subpath in subpaths:
-                zip_ref.extract(subpath, temp_dir)
+                zip_ref.extract(subpath, temp_dir.name)
                 new_filename = subpath.replace('/', '-')
-                shutil.move(os.path.join(temp_dir, subpath), os.path.join(target_path, new_filename))
+                shutil.move(os.path.join(temp_dir.name, subpath), os.path.join(target_path, new_filename))
 
     temp_dir.cleanup()
 
